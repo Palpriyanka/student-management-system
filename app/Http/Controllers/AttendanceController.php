@@ -41,11 +41,11 @@ class AttendanceController extends Controller
                     'teacher_id' => $teacher->id,
                 ]
             );
-            return back()
-                ->with(
-                    'success',
-                    'Attendance Saved'
-                );
         }
+        return back()
+            ->with(
+                'success',
+                'Attendance Saved'
+            );
     }
 }
