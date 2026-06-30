@@ -9,12 +9,12 @@
 @section('content')
 <!-- /.row -->
 <div class="row">
-    <a href="{{ url('students/export/pdf') }}"
+    <a href="{{ url('teachers/export/pdf') }}"
         class="btn btn-danger">
         Export PDF
     </a>
 
-    <a href="{{ url('students/export/excel') }}"
+    <a href="{{ url('teachers/export/excel') }}"
         class="btn btn-success">
         Export Excel
     </a>

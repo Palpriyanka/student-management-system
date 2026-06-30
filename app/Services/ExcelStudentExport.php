@@ -2,15 +2,14 @@
 
 namespace App\Services;
 
+use App\Exports\StudentsExport;
 use App\Interfaces\StudentExportInterface;
-use App\Models\Student;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ExcelStudentExport implements StudentExportInterface
 {
     public function export()
     {
-        $students = Student::all();
-
-        return $students;
+        return Excel::download(new StudentsExport(), 'students.xlsx');
     }
 }

@@ -117,6 +117,10 @@ Route::get(
     '/students/export/{type}',
     [StudentController::class, 'exportStudents']
 );
+Route::get(
+    '/teachers/export/{type}',
+    [TeacherController::class, 'exportTeachers']
+);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

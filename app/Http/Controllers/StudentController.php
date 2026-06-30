@@ -8,6 +8,7 @@ use App\Models\Teacher;
 use App\Traits\LogTrait;
 use App\Services\PdfStudentExport;
 use App\Services\ExcelStudentExport;
+
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
@@ -193,13 +194,14 @@ class StudentController extends Controller
 
 
 
-
     public function exportStudents($type)
     {
         if ($type == 'pdf') {
             $export = new PdfStudentExport();
-        } else {
+        } elseif ($type == 'excel') {
             $export = new ExcelStudentExport();
+        } else {
+            abort(404, 'Invalid export type.');
         }
 
         return $export->export();

@@ -9,6 +9,8 @@ use App\Models\Teacher;
 use App\Models\Student;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use App\Services\PdfTeacherExport;
+use App\Services\ExcelTeacherExport;
 
 
 use function Laravel\Prompts\table;
@@ -159,5 +161,18 @@ class TeacherController extends Controller
         )->whereIn('students.class', $classIds)->select('students.*', 'school_class.class_name')->get();
 
         return view('teachers.my-students', compact('students'));
+    }
+
+    public function exportTeachers($type)
+    {
+        if ($type == 'pdf') {
+            $export = new PdfTeacherExport();
+        } elseif ($type == 'excel') {
+            $export = new ExcelTeacherExport();
+        } else {
+            abort(404, 'Invalid export type.');
+        }
+
+        return $export->export();
     }
 }
